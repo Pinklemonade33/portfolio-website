@@ -46,6 +46,9 @@ $gradient-bottom-left: linear-gradient(315deg, #02111bff, #3f4045ff, #30292fff, 
 $gradient-radial: radial-gradient(#02111bff, #3f4045ff, #30292fff, #5d737eff, #fcfcfcff);
 */
 
+* {
+    box-sizing: border-box;
+}
 
 html, body {
     color: white;
@@ -79,12 +82,8 @@ header nav ul li {
     display: inline-flex;
 }
 
-#about-me {
-   
-}
-
 .section {
-    margin: 60px 30px ;
+    margin: 100px 30px ;
     background-color: #30292fff;
     padding: 10px;
     height: 80vh;
@@ -95,6 +94,7 @@ header nav ul li {
     justify-content: space-around;
     flex: 1;
     flex-grow: 1;
+    margin-top: 0;
 }
 
 #main-project-container {
@@ -123,6 +123,7 @@ footer ul{
 
 #skills {
     position: relative;
+    display: block;
 }
 
 #soft-skills {
@@ -133,9 +134,9 @@ footer ul{
     bottom: 0;
     left: 0;
     right: 0;
-    opacity: 0;
     padding: 0 5px 5px 5px;
     margin: 0 5px 5px 5px;
+    opacity: 0;
 }
 
 #soft-skills div {
@@ -178,6 +179,8 @@ footer ul{
     display: flex;
     align-content: center;
     justify-content: center;
+    cursor: pointer;
+    z-index: 1;
 }
 
 #hard-skills .hard-skill-container img {
@@ -185,16 +188,8 @@ footer ul{
     height: auto;
 }
 
-#skills-description {
-    min-height: 47.7%;
-}
-
-#additional-hard-skills {
-    min-height: 20%;
-}
-
 #skill-switch {
-    min-height: 5%;
+    height: 5%;
     display: inline-flex;
     background-color: #02111b;
     list-style: none;
@@ -212,14 +207,6 @@ footer ul{
     padding: 0;
 }
 
-#hard-switch {
-    opacity: 1;
-}
-
-#soft-switch {
-    opacity: 0.1;
-}
-
 #about-me ul {
     height: 5%;
     display: inline-flex;
@@ -231,10 +218,10 @@ footer ul{
 }
 
 #text-container {
-    border-right: #02111b 20px solid;
-    padding: 0 20px;
+    border-right: #02111b 40px solid;
+    padding: 20px;
     height: 95%;
-    width: 50%;
+    width: 100%;
 }
 
 #about-me ul li {
@@ -244,16 +231,56 @@ footer ul{
 
 #about {
     padding: 0;
+    display: flex;
 }
 
-#into-sel {
-    opacity: 1;
+#intro {
+    background-color: #02111b;
+    height: 100vh;
 }
 
-#how-sel {
-    opacity: 0.1;
+#first-line {
+    font-size: 72px;
+    position: absolute;
+    top: 30%;
+    left: 5%;
 }
 
-#where-sel {
-    opacity: 0.1;
+#second-line {
+    font-size: 72px;
+    position: absolute;
+    top: 40%;
+    left: 5%
 }
+
+#third-line {
+    font-size: 72px;
+    position: absolute;
+    top: 50%;
+    left: 5%
+}
+
+.select {
+    cursor: pointer;
+}
+
+.select:hover {
+    color:yellow
+}
+
+#skills-description-container {
+    height: 68.2%;
+    width: 100%;
+    display: flex;
+}
+
+#skills-description {
+   height: 100%;
+   width: 50%;
+}
+
+#additional-skills {
+  height: 100%;
+  width: 50%;
+}
+

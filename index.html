@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="node_modules\simplebar\dist\simplebar.min.css" />
+    <script src="node_modules\simplebar\dist\simplebar.min.js"></script>
+    <script src="node_modules\jquery\dist\jquery.min.js"></script>
     <title>Braiden Schopp</title>
 </head>
 <body>
@@ -12,29 +15,19 @@
         <header>
             <nav>
                 <ul>
-                    <li>About</li>
-                    <li>Skills</li>
-                    <li>Projects</li>
-                    <li>Contact</li>
+                    <li class="select">Intro</li>
+                    <li class="select">Projects</li>
+                    <li class="select">Skills</li>
+                    <li class="select">Contact</li>
                 </ul>
             </nav>
         </header>
         <main>
-            <div id="about" class="section">
-                <div id="picture"></div>
-                <div id="about-me">
-                    <ul>
-                        <li id="intro-sel">Introduction</li>
-                        <li id="how-sel">How I started</li>
-                        <li id="where-sel">Where I'm headed</li>
-                    </ul>
-                    <div id="text-container">
-                    </div>
-                    
-                </div>
-                <div id="info"></div>
+            <div id="intro" class="section">
+                <span id="first-line">Hello,</span>
+                <span id="second-line">My name is Braiden,</span>
+                <span id="third-line">I'm an aspiring developer with a variety of interests.</span>
             </div>
-            
             <div id="projects" class="section">
                 <div id="main-project-container">
         
@@ -44,15 +37,15 @@
                 </div>
             </div>
             <div id="skills" class="section">
-                <div id="skills-description">
-                    
-                </div>
-                <div id="additional-hard-skills">
-
+                <div id="skills-description-container">
+                    <div id="skills-description">
+                    </div>
+                    <div id="additional-skills">
+                    </div>
                 </div>
                 <ul id="skill-switch">
-                    <li id="hard-switch">Hard Skills</li>
-                    <li id="soft-switch">Soft Skills</li>
+                    <li id="hard-switch" class="select">Hard Skills</li>
+                    <li id="soft-switch" class="select">Soft Skills</li>
                 </ul>
                 <div id="hard-skills">
                     <div class="hard-skill-container">
@@ -73,39 +66,49 @@
                 </div>
                 <div id="soft-skills">
                     <div>
-                        <span id="Work-Ethic">Work Ethic</span>
+                        <span id="Work-Ethic" class="select">Work Ethic</span>
                     </div>
                     <div>
-                        <span id="Communication">Communication</span>
+                        <span id="Communication" class="select">Communication</span>
                     </div>
                     <div>
-                        <span id="Collaboration">Collaboration</span>
+                        <span id="Collaboration" class="select">Collaboration</span>
                     </div>
                     <div>
-                        <span id="Creativity">Creativity</span>
+                        <span id="Creativity" class="select">Creativity</span>
                     </div>
                     <div>
-                        <span id="Adaptibility">Adaptibility</span>
+                        <span id="Adaptibility" class="select">Adaptability</span>
                     </div>
                     <div>
-                        <span id="Orginization">Orginization</span>
+                        <span id="Orginization" class="select">Organization</span>
                     </div>
                     <div>
-                        <span id="Critical Thinking">Critical Thinking</span>
+                        <span id="Critical Thinking" class="select">Critical Thinking</span>
                     </div>
                     <div>
-                        <span id="Planning">Planning</span>
+                        <span id="Planning" class="select">Planning</span>
                     </div>
                     <div>
-                        <span id="Attention-to-detail">Attention to detail</span>
+                        <span id="Attention-to-detail" class="select">Attention to detail</span>
                     </div>
                     <div>
-                        <span id="Problem-Solving">Problem Solving</span>
+                        <span id="Problem-Solving" class="select">Problem Solving</span>
                     </div>
                 </div>
             </div>
-            <div id="contact">
-        
+            <div id="about" class="section">
+                <div id="picture"></div>
+                <div id="about-me">
+                    <ul>
+                        <li id="how-sel" class="select">How I started</li>
+                        <li id="where-sel" class="select">Where I'm headed</li>
+                    </ul>
+                    <div id="text-container">
+                    </div>
+                    
+                </div>
+                <div id="info"></div>
             </div>
             
         </main>
@@ -118,8 +121,8 @@
             </nav>
         </footer>
     </div>
-
-    <script src="about.js"></script>
     <script src="projects.js"></script>
+    <script src="intro.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
