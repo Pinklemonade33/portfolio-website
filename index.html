@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="node_modules\simplebar\dist\simplebar.min.css" />
     <script src="node_modules\simplebar\dist\simplebar.min.js"></script>
     <script src="node_modules\jquery\dist\jquery.min.js"></script>
+    <script src="node_modules\animejs\lib\anime.min.js"></script>
+    <script src="functions.js"></script>
     <title>Braiden Schopp</title>
 </head>
 <body>
@@ -38,7 +40,120 @@
             </div>
             <div id="skills" class="section">
                 <div id="skills-description-container">
-                    <div id="skills-description">
+                    <div id="skills-description" data-simplebar>
+                        <div id="heading-container">
+                            <h2 class="skills-css text">CSS</h2>
+                            <h2 class="skills-html text">HTML</h2>
+                            <h2 class="skills-js text">Java Script</h2>
+                            <h2 class="skills-python text">Python</h2>
+                            <h2 class="skills-vba text">VBA</h2>
+                        </div>
+                        <div id="experience-container">
+                            <div class="skills-css text">
+                                <p>
+                                    I consider this website to be my first real project with CSS, HTML and JS. I think CSS is pretty nice; 
+                                    easy to learn, easy to use, easy to read. That being said, it does take a thorough understanding of 
+                                    how some of its properties actually work if want to avoid some serious head scratching.
+                                </p>
+                            </div>
+                            <div class="skills-html text">
+                                <p>
+                                    HTML is purely the creation of elements on a webpage, the order they come in,
+                                    and their hierarchy. I honestly should have just paired it with CSS as one skill as it's kinda hard
+                                    to do HTML without CSS and impossible to do CSS without HTML.
+                                </p>
+                            </div>
+                            <div class="skills-js text">
+                                <p>
+                                    I was actually getting kinda bored in my website building education, but then I got to JS
+                                    and everything got much much more interesting.
+                                    It feels a lot like Python to me, except a lot of its syntax is almost identical to C and nothing like
+                                    Pythons syntax at all, I'm guessing its because I have so many built-ins at my disposal with it. 
+                                    And maybe it's also because I can do the same thing with it I like to do with Python which is; 
+                                    to see how many variables I can eliminate by just using function calls and condensing my code down. 
+                                </p>
+                            </div>
+                            <div class="skills-python text">
+                                <p>
+                                    Python was the second programming language I learned and introduced me to so many new concepts that
+                                    I got pretty overwhelmed at first. I learned that I needed to prioritize using built-ins over my own
+                                    solutions, which actually kinda disappointed me at first and it feel like I was cheating. The fact that
+                                    I didn't need to declare variables really confused me, as did the fact that I could just write
+                                    all my code onto the module without putting it into a function. I was lost as to what 
+                                    I could do for a project and how to do it. VBA had made those things very easy for me in the past, you
+                                    take data from the excel sheet, you work on it, you put your results on the excel sheet. Done. Simple.
+                                    I did not have a place to collect that data from with Python so I had to figure out how to build one,
+                                    so I learned how to use Tkinter. 
+                                </p>
+                                <p>
+                                    Working at my previous job I was trying to put my newfound programming skills to use 
+                                    in automating the tedious work we often had to do. When new work orders would pop up on our radar, we
+                                    had to manually get the information on the cable we needed to cut from our inventory system, so 
+                                    that we could split the work onto different people. I would sit there and copy and past each individual
+                                    part number, run length and work order number onto an excel sheet, it would often take me at least 
+                                    30 minutes to do. I automated this with Python, using Tkinter for my GUI and openpyxl to read the 
+                                    excel file I downloaded from our inventory system. This was before I discovered pandas, so I used 
+                                    openpyxl to get all the cell data from the worksheet and display everything relevant on the GUI.
+                                    The desired content could be selected and saved to preset so that in the future; the user can see what
+                                    they are looking for and add to the preset easily if needed. By just hitting the next button, the app 
+                                    would then bring the user to the next page were they could then create an excel worksheet with with 
+                                    a some options as to how the contents of that excel sheet would be arrayed. It divided the contents
+                                    In a way so that it not only more readable for the worker, but also in steps so that the certain work
+                                    could be completed in que. I found a much better way of doing this later with VBA on a shared workbook
+                                    but this saved us a lot of time.
+                                </p>
+                                <p>
+                                    When I learned that I would be moved into a position that required me to do reports on our inventory
+                                    data at work, I started to build an app that automated those reports. It would scan for excel files,
+                                    read them and determine what type of data they contained, then saved them in memory as an instance 
+                                    of the class that they were associated with. Each one of these DataFile classes had a another class
+                                    it was correlated to for processing that data. I kept these classes separate because I wanted a
+                                    desired data file to do the report on and some reports required multiple data files, it also simplified
+                                    the process on the command line. You would just need to type in the type of report you wanted to do; 
+                                    which was a class, and then it would initialize an object with a data-frame inside it and some 
+                                    methods for further processing that data-frame. It needed this simplification because some of these
+                                    reports needed multiple reports themselves and it would leave room for error if I forgot which reports
+                                    I needed to for my main report.
+                                </p>
+                            </div>
+                            <div class="skills-vba text">
+                                <p>
+                                    My first program in VBA was all crammed into a single sub-procedure (function that returns no value), with several
+                                    hundred lines of code, It shouldn't surprise you that I had created some cryptic nightmare. When I had finally
+                                    clawed my way out of debugging hell and managed to get my program to work, it made me feel like some kind 
+                                    of master architect, I had built something complex and understood how it worked.
+                                </p>
+                                <p>
+                                    I didn't learn VBA to get into programming, I learned it so that I could automate something that I wanted to automate.
+                                    I wanted a system that could simplify our wire cutting process so that I didn't have to plan it out every time.
+                                    If you had a spool with 3000 feet of wire on it, and you need 4440 feet of that wire, divided into multiple 
+                                    cuts of 360, 180, 150, and 720, how do you get the most out of what you have? What combination results in the most
+                                    waste (low length cuts are scrapped)? What combination results in the most amount of work orders fulfilled and does it
+                                    fulfill the prioritized work orders? To even begin at answering at answering these questions I needed every possible
+                                    combination of the requested run lengths.
+                                </p>
+                                <p>
+                                    Building the combinations algorithm that I needed may have been the hardest thing I've ever done in my life.
+                                    I had only just recently figured out how to use arrays and still knew very little about the tools I had
+                                    at my disposal. Making that thing work became the obsession that pulled me into the world of programming. I 
+                                    would sit it my chair looking up at the ceiling for hours running different patterns through my head until 
+                                    I could make sense of one that work. After I had a pattern, It was a matter of implementing it programmatically.
+                                    And that was hard considering how little I knew at the time.    
+                                </p>
+                                <p>
+                                    After I had finished the combinations algorithm, it still wasn't done, I noticed it was slow. And it was slow because
+                                    I was feeding it too much data. I needed to eliminate much of that data earlier in the process, I needed to optimize 
+                                    the algorithm so that it didn't produce duplicates. Everything I built in that project led to something else I needed
+                                    to build, and it ended up growing into something much larger than I ever thought it would. When I got the main 
+                                    process of the project completed: comparing and analyzing the best result. I wanted setting the user could adjust, 
+                                    I wanted the results to be displayed in a readable way, and I wanted them to be adjustable. These things 
+                                    complicated my project enormously, and I never finished it because for a few different reasons: one was because
+                                    it became something that was not practical: no one was likely to use something so complex and disconnected with the
+                                    current way of doing things. I also felt like at had a knack for this stuff and wanted to learn more about it, so
+                                    I started learning Python.  
+                                </p>
+                            </div>
+                        </div>
                     </div>
                     <div id="additional-skills">
                     </div>
@@ -47,53 +162,59 @@
                     <li id="hard-switch" class="select">Hard Skills</li>
                     <li id="soft-switch" class="select">Soft Skills</li>
                 </ul>
-                <div id="hard-skills">
-                    <div class="hard-skill-container">
-                        <img src="images\css-3.png" alt="css3">
+                <div id="skills-outer">
+                    <div id="hard-skills-outer" data-simplebar>
+                        <div id="hard-skills">
+                            <button class="hard-skill-container select-button hvr-rectangle-out skills-css">
+                                <img src="images\css-3.png" alt="css3" class="skills-css">
+                            </button>
+                            <button class="hard-skill-container select-button hvr-rectangle-out skills-html">
+                                <img src="images\html-5.png" alt="html" class="skills-html">
+                            </button>
+                            <button class="hard-skill-container select-button hvr-rectangle-out skills-js">
+                                <img src="images\js.png" alt="js" class="skills-js">
+                            </button>
+                            <button class="hard-skill-container select-button hvr-rectangle-out skills-python">
+                                <img src="images\python.png" alt="python" class="skills-python">
+                            </button>
+                            <button class="hard-skill-container select-button hvr-rectangle-out skills-vba">
+                                <img src="images\34694.jpg" alt="vba" class="skills-vba">
+                            </button>
+                        </div>
                     </div>
-                    <div class="hard-skill-container">
-                        <img src="images\html-5.png" alt="html">
-                    </div>
-                    <div class="hard-skill-container">
-                        <img src="images\js.png" alt="js">
-                    </div>
-                    <div class="hard-skill-container" id="python">
-                        <img src="images\python.png" alt="python">
-                    </div>
-                    <div class="hard-skill-container" id="vba">
-                        <img src="images\34694.jpg" alt="vba">
-                    </div>
-                </div>
-                <div id="soft-skills">
-                    <div>
-                        <span id="Work-Ethic" class="select">Work Ethic</span>
-                    </div>
-                    <div>
-                        <span id="Communication" class="select">Communication</span>
-                    </div>
-                    <div>
-                        <span id="Collaboration" class="select">Collaboration</span>
-                    </div>
-                    <div>
-                        <span id="Creativity" class="select">Creativity</span>
-                    </div>
-                    <div>
-                        <span id="Adaptibility" class="select">Adaptability</span>
-                    </div>
-                    <div>
-                        <span id="Orginization" class="select">Organization</span>
-                    </div>
-                    <div>
-                        <span id="Critical Thinking" class="select">Critical Thinking</span>
-                    </div>
-                    <div>
-                        <span id="Planning" class="select">Planning</span>
-                    </div>
-                    <div>
-                        <span id="Attention-to-detail" class="select">Attention to detail</span>
-                    </div>
-                    <div>
-                        <span id="Problem-Solving" class="select">Problem Solving</span>
+                    <div id="soft-skills-outer" data-simplebar>
+                        <div id="soft-skills">
+                            <div class="select-button">
+                                <span id="Work-Ethic" class="soft-skill-span">Work Ethic</span>
+                            </div>
+                            <div class="select-button">
+                                <span id="Communication" class="soft-skill-span">Communication</span>
+                            </div>
+                            <div class="select-button">
+                                <span id="Collaboration">Collaboration</span>
+                            </div>
+                            <div class="select-button">
+                                <span id="Creativity">Creativity</span>
+                            </div>
+                            <div class="select-button">
+                                <span id="Adaptibility">Adaptability</span>
+                            </div>
+                            <div class="select-button">
+                                <span id="Orginization">Organization</span>
+                            </div>
+                            <div class="select-button">
+                                <span id="Critical Thinking">Critical Thinking</span>
+                            </div>
+                            <div class="select-button">
+                                <span id="Planning">Planning</span>
+                            </div>
+                            <div class="select-button">
+                                <span id="Attention-to-detail">Attention to detail</span>
+                            </div>
+                            <div class="select-button">
+                                <span id="Problem-Solving">Problem Solving</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -123,6 +244,7 @@
     </div>
     <script src="projects.js"></script>
     <script src="intro.js"></script>
-    <script src="main.js"></script>
+    <script src="main.js" type="module"></script>
+    <script src="animations.js"></script>
 </body>
 </html>
