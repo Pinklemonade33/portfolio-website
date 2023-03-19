@@ -77,3 +77,7 @@ window.addEventListener('resize', setHeight)
 skillText.forEach(element => element.remove())
 
 const textContainerScroll = new SimpleBar(textContainer);
+
+/*
+hello
+*/
