@@ -50,12 +50,18 @@ $gradient-radial: radial-gradient(#02111bff, #3f4045ff, #30292fff, #5d737eff, #f
     box-sizing: border-box;
 }
 
+a {
+    color: white;
+    text-decoration: none;
+}
+
 html, body {
     color: white;
     margin: 0;
     padding: 0;
     height: 100%;
     background-color: #02111b;
+    overflow: hidden;
 }
 
 .wrapper {
@@ -67,6 +73,11 @@ html, body {
 main {
     margin-top: 0;
     width: 100%;
+}
+
+header {
+    position: fixed;
+    z-index: 1;
 }
 
 header nav ul {
@@ -83,10 +94,11 @@ header nav ul li {
 }
 
 .section {
-    margin: 100px 30px ;
     background-color: #30292fff;
     padding: 10px;
-    height: 80vh;
+    height: 70vh;
+    margin-top: 15vh;
+    margin-bottom: 15vh;
 }
 
 #projects {
@@ -226,6 +238,7 @@ footer ul{
 #intro {
     background-color: #02111b;
     height: 100vh;
+    position: relative;
 }
 
 #first-line {
