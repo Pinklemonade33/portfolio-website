@@ -6,347 +6,502 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="node_modules\simplebar\dist\simplebar.min.css" />
+    <link rel="stylesheet" href="node_modules\animate.css\animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
     <script src="node_modules\simplebar\dist\simplebar.min.js"></script>
     <script src="node_modules\jquery\dist\jquery.min.js"></script>
-    <script src="node_modules\animejs\lib\anime.min.js"></script>
+    <script src="bower_components\Flowtype.js\flowtype.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inview/1.0.0/jquery.inview.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/jstree.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/showdown@1.9.1/dist/showdown.min.js"></script>
     <title>Braiden Schopp</title>
 </head>
 <body>
-    <div class="wrapper">
+    <div id="wrapper">
         <header>
             <nav>
                 <ul>
-                    <li><a href="#intro" class="select">Intro</a></li>
-                    <li><a href="#projects" class="select">Projects</a></li>
-                    <li><a href="#skills" class="select">Skills</a></li>
-                    <li><a href="#about" class="select">Contact</a></li>
+                    <li>
+                        <button class="select page-link" id="intro-link">Intro</button>
+                        <div class="color-element" id="color-element-top"></div>
+                        <div class="color-element" id="color-element-bottom"></div>
+                    </li>
+                    <li><button class="select page-link" id="projects-link">Projects</button></li>
+                    <li><button class="select page-link" id="skills-link">Skills</button></li>
+                    <li><button class="select page-link" id="contact-link">Contact</button></li>
                 </ul>
             </nav>
         </header>
         <main>
+            <div class="header-rest" id="intro-header-rest"></div>
             <div id="intro" class="section">
-                <span id="first-line">Hello,</span>
-                <span id="second-line">My name is Braiden,</span>
-                <span id="third-line">I'm an aspiring developer with a variety of interests.</span>
+                <div class="intro-heading">
+                    <span>Hello, my name is Braiden and I'm an aspiring Software Developer.</span>
+                    <span></span>
+                </div>
+                <div class="divider divider-top"></div>
+                <div id="intro-text" class="intro-text" data-simplebar>
+                    <p class="first-p" id="intro-p-1">
+                        I learned I was passionate about coding when my Excel project turned into a 
+                        VBA project that kept growing beyond my original ideas that I had set for it.
+                    </p>
+                    <p class="last-p" id="intro-p-2">
+                        I had no prior training at all when I tried to fix a script that was supposed
+                        to take all the cells of a certain color and add them together. None of 
+                        the tutorials I found helped me much, I guess they gave me a faded dirt path I could 
+                        follow but that was about it. I was jumping into something that was much bigger than 
+                        I could have imagined at the time and there were so many questions that I needed answered
+                        that I didn't know needed asking. I wasn't able to fix the script as I 
+                        thought I could so easily do, and without realizing it, I stepped onto a road that will never end.
+                    </p>
+                </div>
+                <div class="divider divider-bottom" id="intro-text-end"></div>
             </div>
+            <div class="footer-rest" id="intro-footer-rest"></div>
+            <div class="header-rest" id="projects-header-rest"></div>
             <div id="projects" class="section">
-                <div id="main-project-container">
-        
+                <div id="main-project-outer">
+                    <div id="main-project-taskbar">
+                        <button id="main-project-readme-button" class="project-button"><span>README</span></button>
+                        <button id="main-project-demo-button" class="project-button"><span>Demo</span></button>
+                        <a id="main-project-github-button" class="project-button" target="_blank"><img src="images\github-mark-white.png" alt=""></a>
+                    </div>
+                    <div id="main-project-container">
+                        <div id="MyVentory-project" class="project-display myventory-p0">
+                            <div class="console-display myventory-p0 inner-display">
+                                <div class="console">
+                                    <div class="references-outer" data-simplebar>
+                                        <div class="references">
+                                            <span class="comment">// References</span>
+                                            <br>
+                                            <span class="comment">// Initialize Inventory class</span>
+                                            <span class="example">inv = inventory.Inventory()</span>
+                                            <span class="comment">// Generate Locations inside the Inventory object</span>
+                                            <span class="example">inv.generate_locations(loc_range_x=10, loc_range_y=10, loc_range_z=3)</span>
+                                            <span class="comment">// Create an item</span>
+                                            <span class="example">inv.create_item(name='Chair', weight=20)</span>
+                                            <span class="comment">// Create a packaging type object for Chair</span>
+                                            <span class="example">inv.create_packaging_type_object(item_name='Chair', length=5, width=5, height=5, quantity_type='static')</span>
+                                            <span class="comment">// Select the 'Chair' item</span>
+                                            <span class="example">item = inv.item_library['Chair']</span>
+                                            <span class="comment">// Select a packaging type object</span>
+                                            <span class="example">pt = item.packaging_type_objects[0]</span>
+                                            <span class="comment">// Create a package for the 'Chair' item using the selected packaging type object</span>
+                                            <span class="example">inv.create_package(item_name='Chair', packaging_type_object=pt, location='AA1', item_quantity=1, package_quantity=2)</span>
+                                            <span class="comment">// Select a package within the selected item</span>
+                                            <span class="example">package = item.packages[0]</span>
+                                            <span class="comment">// Move the selected package from one location to another</span>
+                                            <span class="example">inv.move_package(package, 'AA1', 'AA2')</span>
+                                            <span class="comment">// Reset the console</span>
+                                            <span class="example">reset</span>
+                                            <br>
+                                        </div>
+                                    </div>
+                                    <div class="horizontal-divider"></div>
+                                    <div class="console-inner" data-simplebar>     
+                                        <div class="code-box">
+                                        </div>
+                                        <div class="command-prompt-container">
+                                            <span>>>></span>
+                                            <input class="command-prompt">
+                                        </div>
+                                    </div>                 
+                                </div>
+                                <div class="vertical-divider"></div>
+                                <div class="right-side" data-simplebar>
+                                    <div class="object-tree-view"></div>
+                                </div>
+                            </div>
+                            <div class="readme-display myventory-p0 inner-display" data-simplebar>
+                            </div>
+                        </div>
+                        <div id="No-More-Reports-project" class="project-display no-more-reports-p1">
+                            <div class="console-display no-more-reports-p1 inner-display">
+                                <div class="console">
+                                    <div class="df-display">
+                                    </div>
+                                    <div class="horizontal-divider"></div>
+                                    <div class="console-inner" data-simplebar>     
+                                        <div class="code-box">
+                                        </div>
+                                        <div class="command-prompt-container">
+                                            <span>>>></span>
+                                            <input class="command-prompt">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="vertical-divider"></div>
+                                <div class="right-side">
+                                    <div class="ref-container">
+                                        <div class="ref-0" data-simplebar>
+                                            <div class="references">
+                                                <span class="comment">// Class References</span>
+                                                <span class="example">ro = report_objects.MaterialForcast()</span>
+                                                <span class="example">ro = report_objects.DIVTransactionsRS()</span>
+                                                <span class="example">ro = report_objects.LOCTransactionsRS()</span>
+                                                <span class="example">ro = report_objects.INVLocationsRS()</span>
+                                                <span class="example">ro = report_objects.MaterialStatus()</span>
+                                                <span class="example">ro = report_objects.Shipments()</span>
+                                                <span class="example">ro = report_objects.PendingPOLine()</span>
+                                                <span class="example">ro = report_objects.ReceivedPOLine()</span>
+                                                <span class="example">ro = report_objects.POShipping()</span>
+                                                <br>
+                                                <span class="comment">// Utilities</span>
+                                                <span class="example">reset</span>
+                                                <br>
+                                            </div>
+                                        </div>
+                                        <div class="horizontal-divider"></div>
+                                        <div class="ref-1" data-simplebar>
+                                            <div class="references">
+                                                <span class="comment">// Class methods and attributes</span>
+                                                <br>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="readme-display no-more-reports-p1 inner-display" data-simplebar></div>
+                        </div>
+                        <div id="Worksheet-Builder-project" class="project-display worksheet-builder-p2">
+                            <div class="readme-display worksheet-builder-p2 inner-display" data-simplebar></div>
+                        </div>
+                    </div>
                 </div>
-                <div id="side-projects">
-        
+                <div id="side-projects-container">
+                    <div class="side-project-container myventory-p0 hvr-fade">
+                        <span class="null myventory-p0">MyVentory</span>
+                        <div id="sp-myventory" class="side-projects myventory-p0"></div>
+                    </div>
+                    <div class="side-project-container no-more-reports-p1 hvr-fade">
+                        <span class="null no-more-reports-p1">No More Reports</span>
+                        <div id="sp-no-more-reports" class="side-projects no-more-reports-p1"></div>
+                    </div>
+                    <div class="side-project-container worksheet-builder-p2 hvr-fade">
+                        <span class="null worksheet-builder-p2">Worksheet Builder</span>
+                        <div id="sp-worksheet-builder" class="side-projects worksheet-builder-p2"></div>
+                    </div>
                 </div>
             </div>
+            <div class="footer-rest" id="projects-footer-rest"></div>
+            <div class="header-rest" id="skills-header-rest"></div>
             <div id="skills" class="section">
                 <div id="skills-description-container">
-                    <div id="skills-description" data-simplebar>
-                        <div id="heading-container">
-                            <h2 class="skills-css text">CSS</h2>
-                            <h2 class="skills-html text">HTML</h2>
-                            <h2 class="skills-js text">Java Script</h2>
-                            <h2 class="skills-python text">Python</h2>
-                            <h2 class="skills-vba text">VBA</h2>
+                    <div id="skills-description" >
+                        <div id="heading-container" class="skills-heading">
+                            <span class="skills-html-css-js skills-text">HTML, CSS and JS</span>
+                            <span class="skills-python skills-text">Python</span>
+                            <span class="skills-vba skills-text">VBA</span>
                         </div>
-                        <div id="experience-container">
-                            <div class="skills-css text">
-                                <p>
-                                    I consider this website to be my first real project with CSS, HTML and JS. I think CSS is pretty nice; 
-                                    easy to learn, easy to use, easy to read. That being said, it does take a thorough understanding of 
-                                    how some of its properties actually work if want to avoid some serious head scratching.
-                                </p>
-                            </div>
-                            <div class="skills-html text">
-                                <p>
-                                    HTML is purely the creation of elements on a webpage, the order they come in,
-                                    and their hierarchy. I honestly should have just paired it with CSS as one skill as it's kinda hard
-                                    to do HTML without CSS and impossible to do CSS without HTML.
-                                </p>
-                            </div>
-                            <div class="skills-js text">
-                                <p>
-                                    I was actually getting kinda bored in my website building education, but then I got to JS
-                                    and everything got much much more interesting.
-                                    It feels a lot like Python to me, except a lot of its syntax is almost identical to C and nothing like
-                                    Pythons syntax at all, I'm guessing its because I have so many built-ins at my disposal with it. 
-                                    And maybe it's also because I can do the same thing with it I like to do with Python which is; 
-                                    to see how many variables I can eliminate by just using function calls and condensing my code down. 
-                                </p>
-                            </div>
-                            <div class="skills-python text">
-                                <p>
-                                    Python was the second programming language I learned and introduced me to so many new concepts that
-                                    I got pretty overwhelmed at first. I learned that I needed to prioritize using built-ins over my own
-                                    solutions, which actually kinda disappointed me at first and it feel like I was cheating. The fact that
-                                    I didn't need to declare variables really confused me, as did the fact that I could just write
-                                    all my code onto the module without putting it into a function. I was lost as to what 
-                                    I could do for a project and how to do it. VBA had made those things very easy for me in the past, you
-                                    take data from the excel sheet, you work on it, you put your results on the excel sheet. Done. Simple.
-                                    I did not have a place to collect that data from with Python so I had to figure out how to build one,
-                                    so I learned how to use Tkinter. 
-                                </p>
-                                <p>
-                                    Working at my previous job I was trying to put my newfound programming skills to use 
-                                    in automating the tedious work we often had to do. When new work orders would pop up on our radar, we
-                                    had to manually get the information on the cable we needed to cut from our inventory system, so 
-                                    that we could split the work onto different people. I would sit there and copy and past each individual
-                                    part number, run length and work order number onto an excel sheet, it would often take me at least 
-                                    30 minutes to do. I automated this with Python, using Tkinter for my GUI and openpyxl to read the 
-                                    excel file I downloaded from our inventory system. This was before I discovered pandas, so I used 
-                                    openpyxl to get all the cell data from the worksheet and display everything relevant on the GUI.
-                                    The desired content could be selected and saved to preset so that in the future; the user can see what
-                                    they are looking for and add to the preset easily if needed. By just hitting the next button, the app 
-                                    would then bring the user to the next page were they could then create an excel worksheet with with 
-                                    a some options as to how the contents of that excel sheet would be arrayed. It divided the contents
-                                    In a way so that it not only more readable for the worker, but also in steps so that the certain work
-                                    could be completed in que. I found a much better way of doing this later with VBA on a shared workbook
-                                    but this saved us a lot of time.
-                                </p>
-                                <p>
-                                    When I learned that I would be moved into a position that required me to do reports on our inventory
-                                    data at work, I started to build an app that automated those reports. It would scan for excel files,
-                                    read them and determine what type of data they contained, then saved them in memory as an instance 
-                                    of the class that they were associated with. Each one of these DataFile classes had a another class
-                                    it was correlated to for processing that data. I kept these classes separate because I wanted a
-                                    desired data file to do the report on and some reports required multiple data files, it also simplified
-                                    the process on the command line. You would just need to type in the type of report you wanted to do; 
-                                    which was a class, and then it would initialize an object with a data-frame inside it and some 
-                                    methods for further processing that data-frame. It needed this simplification because some of these
-                                    reports needed multiple reports themselves and it would leave room for error if I forgot which reports
-                                    I needed to for my main report.
-                                </p>
-                            </div>
-                            <div class="skills-vba text">
-                                <p>
-                                    My first program in VBA was all crammed into a single sub-procedure (function that returns no value), with several
-                                    hundred lines of code, It shouldn't surprise you that I had created some cryptic nightmare. When I had finally
-                                    clawed my way out of debugging hell and managed to get my program to work, it made me feel like some kind 
-                                    of master architect, I had built something complex and understood how it worked.
-                                </p>
-                                <p>
-                                    I didn't learn VBA to get into programming, I learned it so that I could automate something that I wanted to automate.
-                                    I wanted a system that could simplify our wire cutting process so that I didn't have to plan it out every time.
-                                    If you had a spool with 3000 feet of wire on it, and you need 4440 feet of that wire, divided into multiple 
-                                    cuts of 360, 180, 150, and 720, how do you get the most out of what you have? What combination results in the most
-                                    waste (low length cuts are scrapped)? What combination results in the most amount of work orders fulfilled and does it
-                                    fulfill the prioritized work orders? To even begin at answering at answering these questions I needed every possible
-                                    combination of the requested run lengths.
-                                </p>
-                                <p>
-                                    Building the combinations algorithm that I needed may have been the hardest thing I've ever done in my life.
-                                    I had only just recently figured out how to use arrays and still knew very little about the tools I had
-                                    at my disposal. Making that thing work became the obsession that pulled me into the world of programming. I 
-                                    would sit it my chair looking up at the ceiling for hours running different patterns through my head until 
-                                    I could make sense of one that work. After I had a pattern, It was a matter of implementing it programmatically.
-                                    And that was hard considering how little I knew at the time.    
-                                </p>
-                                <p>
-                                    After I had finished the combinations algorithm, it still wasn't done, I noticed it was slow. And it was slow because
-                                    I was feeding it too much data. I needed to eliminate much of that data earlier in the process, I needed to optimize 
-                                    the algorithm so that it didn't produce duplicates. Everything I built in that project led to something else I needed
-                                    to build, and it ended up growing into something much larger than I ever thought it would. When I got the main 
-                                    process of the project completed: comparing and analyzing the best result. I wanted setting the user could adjust, 
-                                    I wanted the results to be displayed in a readable way, and I wanted them to be adjustable. These things 
-                                    complicated my project enormously, and I never finished it because for a few different reasons: one was because
-                                    it became something that was not practical: no one was likely to use something so complex and disconnected with the
-                                    current way of doing things. I also felt like at had a knack for this stuff and wanted to learn more about it, so
-                                    I started learning Python.  
-                                </p>
-                            </div>
-                            <div class="skills-workethic text">
-                                <p>
-                                    For years I've done work that I've hated, gave it everything I had, and gained nothing in the long term for it. 
-                                    I don't need to gain anything to work hard, that's just what I expect of myself and what I'm used to. 
-                                </p>
-                            </div>
-                            <div class="skills-communication text">
-                                <p>
-                                </p>
-                            </div>
-                            <div class="skills-collaboration text">
-                                <p>
-                                    In my previous job I was one of the last remaining experienced people in my facility who knew everything from the material we
-                                    gave out to the work that needed to be done. When we starting picking up all the new hires we needed, I played a large part in
-                                    training the new staff of that facility. I was often looked to for guidance and I was on several occasions flown out to our other markets
-                                    across the country for consultation and training. 
-                                </p>
-                            </div>
-                            <div class="skills-creativity text">
-                                <p>
-                                    I'm always coming up with new ideas and many of these ideas are solutions to problems I've had to deal with.
-                                    At my previous job, many of the different procedures we followed were my invention. The quality control process was a lot
-                                    like dumpster diving when I first started working there, so I changed that to something better. instead of reaching into the 
-                                    construction site kit and checking for each item on the list, I took everything out, sorted it and reviewed it. 
-                                    I then told all the order pickers to organize the materials they were picking in a way so that only some of the light weight 
-                                    items needed to be taken out and counted.
-                                </p>
-                                <p>
-                                    Some of the cable we needed to cut was very large and heavy and needed to be put onto a spool. When we started running out of
-                                    spools I figured out that each cut of this heavy cable was divided into 3 to 6 runs. I asked around and was able to get access 
-                                    to the construction site build plans and use them to determine what the footage of each run was so that we could coil the cable 
-                                    into smaller bundles. 
-                                </p>
-                                <p>
-                                    Getting corrugated conduit was always difficult, you had to roll the giant aluminum spool it was on across the warehouse, 
-                                    de-spooling the conduit onto the ground. Then you had to measure it and roll up into a bundle. rolling it into a bundle 
-                                    a lot of sweaty work and it just turned into a giant blob when you were done. To make this a lot easier I took one of the
-                                    conduit spools and cut off one side with a reciprocating saw so that the conduit could be reeled onto it and then be 
-                                    slid off.
-                                </p>
-                                <p>
-                                    I would take these cardboard lids we had for gaylord boxes that were not in our warehouse anymore and cut pieces out of 
-                                    them to make dividers for our plastic bins. With those dividers we could store different items into our plastic bins, and that
-                                    helped a bit with how well we could consolidate things. I took cardboard and separated boxes of metal clamps into layers with
-                                    25 pieces per layer so that way it would only take a second to count.
-                                </p>
-                            </div>
-                            <div class="skills-organization text">
-                                <p>
-                                    I've always had problems losing things or just having a hard time finding them, so I really like to set things 
-                                    up In a way that has some order to it. I spent all the down time I had at my previous job organizing the place,
-                                    no one told me to do it, I just didn't like the fact that it was such a mess and nothing was were it was supposed to be.
-                                    I spent a whole week digging through a pile of wire that spanned the size of a few cars, pulling out each bundle of wire, labeling it,
-                                    and putting it on pallet with its same type.
-                                </p>
-                                <p>
-                                    There were always these three things I had to think about when I was organizing: accessability, consolidation and 
-                                    how well things could be found. They all conflicted with each other most of the time; if you consolidated everything as 
-                                    much as you possibly could, for example, you would have to bury many of those items behind other items making them
-                                    unaccessible, and more difficult to find. Finding a balance between these things was always a challenge and it 
-                                    was very satisfying to get it right. 
-                                </p>
-                                <p>
-                                    As I organized more and more, the work kept getting easier and we kept getting done with our main line of work
-                                    faster, which meant I had more time to organize. At one point almost every pallet in that warehouse was placed where it 
-                                    was by me and for a specific reason.
-                                </p>
-                                <p>
-                                    About a year of being with that company they sent me to help out at one of their other markets up in Des Moines, Iowa.
-                                    While I was up there I took a lot of the different standards I held for our warehouse and applied them there, the
-                                    effects were pretty drastic. I transformed that place from whatever it was before into an actual warehouse.
-                                </p>
-                            </div>
-                            <div class="Problem Solving">
-                                <p>
-                                    I can't do with problems sometimes, but I can't do without them either. I've always had this problem 
-                                    with my desire and ability to learn, for some reason, in conventional methods; like school and college or whatever,
-                                    some part of my brain just doesn't care: I struggle find the motivation and energy I need to comprehend
-                                    what is being said to me in class. This led to me accomplishing much less that what I could have if things
-                                    were just a bit different.
-                                </p>
-                                <p>
-                                    
-                                </p>
-                                <p>
-                                    Most things I know in Programming have mostly been learned through my efforts at solving a problem. The process usually goes like this:
-                                    I come up with something I want to do, I try to do it and it fails. I then research a solution and none of the solutions make any sense to me,
-                                    I realize that they don't make any sense to me because they are a part of a much larger concept that I do not understand yet.
-                                    So I begin to learn that concept to realize I still missing a few things I need to know, so I go and learn that stuff too.
-                                </p>
-                                    
-                                    
-
-                                    
-                                
+                        <div class="divider divider-top" id="heading-divider"></div>
+                        <div id="experience-container-outer" data-simplebar>
+                            <div id="experience-container">
+                                <div class='skills-css-html-js'>
+                                    <p class="first-p last-p"></p>
+                                </div>             
+                                <div class="skills-python skills-text content-text">
+                                    <p class="first-p">
+                                        Python was the second programming language I learned and introduced me to so many new concepts that
+                                        I got pretty overwhelmed at first. I learned that I needed to prioritize using built-ins over my own
+                                        solutions, which actually kinda disappointed me at first and it feel like I was cheating. The fact that
+                                        I didn't need to declare variables really confused me, as did the fact that I could just write
+                                        all my code onto the module without putting it into a function. I was lost as to what 
+                                        I could do for a project and how to do it. VBA had made those things very easy for me in the past, you
+                                        take data from the excel sheet, you work on it, you put your results on the excel sheet. Done. Simple.
+                                        I did not have a place to collect that data from with Python so I had to figure out how to build one,
+                                        so I learned how to use Tkinter. 
+                                    </p>
+                                    <p>
+                                        Working at my previous job I was trying to put my newfound programming skills to use 
+                                        in automating the tedious work we often had to do. When new work orders would pop up on our radar, we
+                                        had to manually get the information on the cable we needed to cut from our inventory system, so 
+                                        that we could split the work onto different people. I would sit there and copy and past each individual
+                                        part number, run length and work order number onto an excel sheet, it would often take me at least 
+                                        30 minutes to do. I automated this with Python, using Tkinter for my GUI and openpyxl to read the 
+                                        excel file I downloaded from our inventory system. This was before I discovered pandas, so I used 
+                                        openpyxl to get all the cell data from the worksheet and display everything relevant on the GUI.
+                                        The desired content could be selected and saved to preset so that in the future; the user can see what
+                                        they are looking for and add to the preset easily if needed. By just hitting the next button, the app 
+                                        would then bring the user to the next page were they could then create an excel worksheet with with 
+                                        a some options as to how the contents of that excel sheet would be arrayed. It divided the contents
+                                        In a way so that it not only more readable for the worker, but also in steps so that the certain work
+                                        could be completed in que. I found a much better way of doing this later with VBA on a shared workbook
+                                        but this saved us a lot of time.
+                                    </p>
+                                    <p class="last-p">
+                                        When I learned that I would be moved into a position that required me to do reports on our inventory
+                                        data at work, I started to build an app that automated those reports. It would scan for excel files,
+                                        read them and determine what type of data they contained, then saved them in memory as an instance 
+                                        of the class that they were associated with. Each one of these DataFile classes had a another class
+                                        it was correlated to for processing that data. I kept these classes separate because I wanted a
+                                        desired data file to do the report on and some reports required multiple data files, it also simplified
+                                        the process on the command line. You would just need to type in the type of report you wanted to do; 
+                                        which was a class, and then it would initialize an object with a data-frame inside it and some 
+                                        methods for further processing that data-frame. It needed this simplification because some of these
+                                        reports needed multiple reports themselves and it would leave room for error if I forgot which reports
+                                        I needed to for my main report.
+                                    </p>
+                                    <div class="additional-skills-outer">
+                                        <button class="additional-skills-container">
+                                            <span class="additional-skills-text">pandas</span>
+                                        </button>
+                                        <button class="additional-skills-container">
+                                            <span class="additional-skills-text">Selenium</span>
+                                        </button>
+                                        <button class="additional-skills-container">
+                                            <span class="additional-skills-text">Tkinter</span>
+                                        </button>
+                                        <button class="additional-skills-container">
+                                            <span class="additional-skills-text">PyQt5</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="skills-vba skills-text content-text">
+                                    <p class="first-p">
+                                        My first program in VBA was all crammed into a single sub-procedure (function that returns no value), with several
+                                        hundred lines of code, It shouldn't surprise you that I had created some cryptic nightmare. When I had finally
+                                        clawed my way out of debugging hell and managed to get my program to work, it made me feel like some kind 
+                                        of master architect, I had built something complex and understood how it worked.
+                                    </p>
+                                    <p>
+                                        I didn't learn VBA to get into programming, I learned it so that I could automate something that I wanted to automate.
+                                        I wanted a system that could simplify our wire cutting process so that I didn't have to plan it out every time.
+                                        If you had a spool with 3000 feet of wire on it, and you need 4440 feet of that wire, divided into multiple 
+                                        cuts of 360, 180, 150, and 720, how do you get the most out of what you have? What combination results in the most
+                                        waste (low length cuts are scrapped)? What combination results in the most amount of work orders fulfilled and does it
+                                        fulfill the prioritized work orders? To even begin at answering at answering these questions I needed every possible
+                                        combination of the requested run lengths.
+                                    </p>
+                                    <p>
+                                        Building the combinations algorithm that I needed may have been the hardest thing I've ever done in my life.
+                                        I had only just recently figured out how to use arrays and still knew very little about the tools I had
+                                        at my disposal. Making that thing work became the obsession that pulled me into the world of programming. I 
+                                        would sit it my chair looking up at the ceiling for hours running different patterns through my head until 
+                                        I could make sense of one that work. After I had a pattern, It was a matter of implementing it programmatically.
+                                        And that was hard considering how little I knew at the time.    
+                                    </p>
+                                    <p class="last-p">
+                                        After I had finished the combinations algorithm, it still wasn't done, I noticed it was slow. And it was slow because
+                                        I was feeding it too much data. I needed to eliminate much of that data earlier in the process, I needed to optimize 
+                                        the algorithm so that it didn't produce duplicates. Everything I built in that project led to something else I needed
+                                        to build, and it ended up growing into something much larger than I ever thought it would. When I got the main 
+                                        process of the project completed: comparing and analyzing the best result. I wanted setting the user could adjust, 
+                                        I wanted the results to be displayed in a readable way, and I wanted them to be adjustable. These things 
+                                        complicated my project enormously, and I never finished it because for a few different reasons: one was because
+                                        it became something that was not practical: no one was likely to use something so complex and disconnected with the
+                                        current way of doing things. I also felt like at had a knack for this stuff and wanted to learn more about it, so
+                                        I started learning Python.  
+                                    </p>
+                                </div>
+                                <div class="skills-workethic skills-text content-text">
+                                    <p class="first-p">
+                                        For years I've done work that I've hated, gave it everything I had, and gained nothing in the long term for it. 
+                                        I don't need to gain anything to work hard, that's just what I expect of myself and what I'm used to. 
+                                    </p>
+                                </div>
+                                <div class="skills-communication skills-text content-text">
+                                    <p>
+                                    </p>
+                                </div>
+                                <div class="skills-collaboration skills-text content-text">
+                                    <p class="first-p">
+                                        In my previous job I was one of the last remaining experienced people in my facility who knew everything from the material we
+                                        gave out to the work that needed to be done. When we starting picking up all the new hires we needed, I played a large part in
+                                        training the new staff of that facility. I was often looked to for guidance and I was on several occasions flown out to our other markets
+                                        across the country for consultation and training. 
+                                    </p>
+                                </div>
+                                <div class="skills-creativity skills-text content-text">
+                                    <p class="first-p">
+                                        I'm always coming up with new ideas and many of these ideas are solutions to problems I've had to deal with.
+                                        At my previous job, many of the different procedures we followed were my invention. The quality control process was a lot
+                                        like dumpster diving when I first started working there, so I changed that to something better. instead of reaching into the 
+                                        construction site kit and checking for each item on the list, I took everything out, sorted it and reviewed it. 
+                                        I then told all the order pickers to organize the materials they were picking in a way so that only some of the light weight 
+                                        items needed to be taken out and counted.
+                                    </p>
+                                    <p>
+                                        Some of the cable we needed to cut was very large and heavy and needed to be put onto a spool. When we started running out of
+                                        spools I figured out that each cut of this heavy cable was divided into 3 to 6 runs. I asked around and was able to get access 
+                                        to the construction site build plans and use them to determine what the footage of each run was so that we could coil the cable 
+                                        into smaller bundles. 
+                                    </p>
+                                    <p>
+                                        Getting corrugated conduit was always difficult, you had to roll the giant aluminum spool it was on across the warehouse, 
+                                        de-spooling the conduit onto the ground. Then you had to measure it and roll up into a bundle. rolling it into a bundle 
+                                        a lot of sweaty work and it just turned into a giant blob when you were done. To make this a lot easier I took one of the
+                                        conduit spools and cut off one side with a reciprocating saw so that the conduit could be reeled onto it and then be 
+                                        slid off.
+                                    </p>
+                                    <p class="last-p">
+                                        I would take these cardboard lids we had for gaylord boxes that were not in our warehouse anymore and cut pieces out of 
+                                        them to make dividers for our plastic bins. With those dividers we could store different items into our plastic bins, and that
+                                        helped a bit with how well we could consolidate things. I took cardboard and separated boxes of metal clamps into layers with
+                                        25 pieces per layer so that way it would only take a second to count.
+                                    </p>
+                                </div>
+                                <div class="skills-organization skills-text content-text">
+                                    <p class="first-p">
+                                        I've always had problems losing things or just having a hard time finding them, so I really like to set things 
+                                        up In a way that has some order to it. I spent all the down time I had at my previous job organizing the place,
+                                        no one told me to do it, I just didn't like the fact that it was such a mess and nothing was were it was supposed to be.
+                                        I spent a whole week digging through a pile of wire that spanned the size of a few cars, pulling out each bundle of wire, labeling it,
+                                        and putting it on pallet with its same type.
+                                    </p>
+                                    <p>
+                                        There were always these three things I had to think about when I was organizing: accessability, consolidation and 
+                                        how well things could be found. They all conflicted with each other most of the time; if you consolidated everything as 
+                                        much as you possibly could, for example, you would have to bury many of those items behind other items making them
+                                        unaccessible, and more difficult to find. Finding a balance between these things was always a challenge and it 
+                                        was very satisfying to get it right. 
+                                    </p>
+                                    <p>
+                                        As I organized more and more, the work kept getting easier and we kept getting done with our main line of work
+                                        faster, which meant I had more time to organize. At one point almost every pallet in that warehouse was placed where it 
+                                        was by me and for a specific reason.
+                                    </p>
+                                    <p class="last-p">
+                                        About a year of being with that company they sent me to help out at one of their other markets up in Des Moines, Iowa.
+                                        While I was up there I took a lot of the different standards I held for our warehouse and applied them there, the
+                                        effects were pretty drastic. I transformed that place from whatever it was before into an actual warehouse.
+                                    </p>
+                                </div>
+                                <div class="skills-problem-solving skills-text content-text">
+                                    <p class="first-p">
+                                        I can't do with problems sometimes, but I can't do without them either. I've always had this problem 
+                                        with my desire and ability to learn, for some reason, in conventional methods; like school and college or whatever,
+                                        some part of my brain just doesn't care: I struggle find the motivation and energy I need to comprehend
+                                        what is being said to me in class. This led to me accomplishing much less that what I could have if things
+                                        were just a bit different.
+                                    </p>
+                                    <p>
+                                        
+                                    </p>
+                                    <p class="last-p">
+                                        Most things I know in Programming have mostly been learned through my efforts at solving a problem. The process usually goes like this:
+                                        I come up with something I want to do, I try to do it and it fails. I then research a solution and none of the solutions make any sense to me,
+                                        I realize that they don't make any sense to me because they are a part of a much larger concept that I do not understand yet.
+                                        So I begin to learn that concept to realize I still missing a few things I need to know, so I go and learn that stuff too.
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="additional-skills">
                     </div>
                 </div>
+                <div class="divider divider-bottom" id="skills-divider"></div>
                 <ul id="skill-switch">
                     <li id="hard-switch" class="select">Hard Skills</li>
                     <li id="soft-switch" class="select">Soft Skills</li>
                 </ul>
-                <div id="skills-outer">
-                    <div id="hard-skills-outer" data-simplebar>
-                        <div id="hard-skills">
-                            <button class="hard-skill-container select-button hvr-rectangle-out skills-css">
-                                <img src="images\css-3.png" alt="css3" class="skills-css">
-                            </button>
-                            <button class="hard-skill-container select-button hvr-rectangle-out skills-html">
-                                <img src="images\html-5.png" alt="html" class="skills-html">
-                            </button>
-                            <button class="hard-skill-container select-button hvr-rectangle-out skills-js">
-                                <img src="images\js.png" alt="js" class="skills-js">
-                            </button>
-                            <button class="hard-skill-container select-button hvr-rectangle-out skills-python">
-                                <img src="images\python.png" alt="python" class="skills-python">
-                            </button>
-                            <button class="hard-skill-container select-button hvr-rectangle-out skills-vba">
-                                <img src="images\34694.jpg" alt="vba" class="skills-vba">
-                            </button>
+                <div id="skills-container">
+                    <div id="skills-outer">
+                        <div id="hard-skills-outer" data-simplebar>
+                            <div id="hard-skills">
+                                <button class="hard-skill-container select-button skills-html-css-js wide">
+                                    <img src="images\css-3.png" alt="css3" class="skills-html-css-js">
+                                    <img src="images\html-5.png" alt="html" class="skills-html-css-js">
+                                    <img src="images\js.png" alt="js" class="skills-html-css-js">
+                                </button>
+                                <button class="hard-skill-container select-button skills-python">
+                                    <img src="images\python.png" alt="python" class="skills-python">
+                                </button>
+                                <button class="hard-skill-container select-button skills-vba">
+                                    <img src="images\34694.jpg" alt="vba" class="skills-vba">
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                    <div id="soft-skills-outer" data-simplebar>
-                        <div id="soft-skills">
-                            <div class="select-button">
-                                <span id="Work-Ethic" class="soft-skill-span">Work Ethic</span>
-                            </div>
-                            <div class="select-button">
-                                <span id="Communication" class="soft-skill-span">Communication</span>
-                            </div>
-                            <div class="select-button">
-                                <span id="Collaboration">Collaboration</span>
-                            </div>
-                            <div class="select-button">
-                                <span id="Creativity">Creativity</span>
-                            </div>
-                            <div class="select-button">
-                                <span id="Adaptibility">Adaptability</span>
-                            </div>
-                            <div class="select-button">
-                                <span id="Orginization">Organization</span>
-                            </div>
-                            <div class="select-button">
-                                <span id="Critical Thinking">Critical Thinking</span>
-                            </div>
-                            <div class="select-button">
-                                <span id="Planning">Planning</span>
-                            </div>
-                            <div class="select-button">
-                                <span id="Attention-to-detail">Attention to detail</span>
-                            </div>
-                            <div class="select-button">
-                                <span id="Problem-Solving">Problem Solving</span>
+                        <div id="soft-skills-outer" data-simplebar>
+                            <div id="soft-skills">
+                                <button class="select-button skills-work-ethic">
+                                    <span id="Work-Ethic" class="skills-work-ethic soft-skills-text">Work Ethic</span>
+                                </button>
+                                <button class="select-button skills-communication">
+                                    <span id="Communication" class="skills-communication soft-skills-text">Communication</span>
+                                </button>
+                                <button class="select-button skills-collaboration">
+                                    <span id="Collaboration" class="skills-collaboration soft-skills-text">Collaboration</span>
+                                </button>
+                                <button class="select-button skills-creativity">
+                                    <span id="Creativity" class="skills-creativity soft-skills-text">Creativity</span>
+                                </button>
+                                <button class="select-button skills-adaptibility">
+                                    <span id="Adaptibility" class="skills-adaptibility soft-skills-text">Adaptability</span>
+                                </button>
+                                <button class="select-button skills-orginization">
+                                    <span id="Orginization" class="skills-orginization soft-skills-text">Organization</span>
+                                </button>
+                                <button class="select-button skills-critical-thinking">
+                                    <span id="Critical-Thinking" class="skills-critical-thinking soft-skills-text">Critical Thinking</span>
+                                </button>
+                                <button class="select-button skills-planning">
+                                    <span id="Planning" class="skills-planning soft-skills-text">Planning</span>
+                                </button>
+                                <button class="select-button skills-attention-to-detail">
+                                    <span id="Attention-to-detail" class="skills-attention-to-detail soft-skills-text">Attention to detail</span>
+                                </button>
+                                <button class="select-button skills-problem-solving">
+                                    <span id="Problem-Solving" class="skills-problem-solving soft-skills-text">Problem Solving</span>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="footer-rest" id="skills-footer-rest"></div>
+            <div class="header-rest" id="about-header-rest"></div>
             <div id="about" class="section">
-                <div id="picture"></div>
                 <div id="about-me">
-                    <ul>
-                        <li id="how-sel" class="select">How I started</li>
-                        <li id="where-sel" class="select">Where I'm headed</li>
-                    </ul>
-                    <div id="text-container">
-                        <div id="how">
-                            <p>
-                                I learned I was passionate about coding when my Excel project turned into a 
-                                VBA project that kept growing beyond my original ideas that I had set for it.
-                            </p>
-                            <p>
-                                I had no prior training at all when I tried to fix a script that was supposed
-                                to take all the cells of a certain color and add them together. None of 
-                                the tutorials I found helped me much, I guess they gave me a faded dirt path I could 
-                                follow but that was about it. I was jumping into to something that was much bigger than 
-                                I could have imagined at the time and there were so many questions that I needed answered
-                                that I didn't know needed asking. I wasn't able to fix the script as I 
-                                thought I could so easily do, and without realizing it, I stepped onto a road that will never end.
-                            </p>
-                        </div>
-                        <div id="where">
-                            <p>
-                                
+                    <div id="about-heading">
+                        <span>Where I'm headed</span>
+                    </div>
+                    <div class="divider divider-top"></div>
+                    <div id="about-text" data-simplebar>
+                        <div id="about-text-inner" class="content-text" >
+                            <p class="last-p first-p">
+                                As much as I've learned since I started programming a year and a half ago, It's
+                                still not enough for me and I know that as long as I keep going, what I gain in 
+                                knowledge will never be enough, because there will always be more to learn.
                             </p>
                         </div>
                     </div>
-                    
+                    <div class="divider divider-bottom"></div>
                 </div>
-                <div id="info"></div>
+                <div id="about-vertical-divider"></div>
+                <div id="info">
+                    <div id="info-heading">
+                        <span>I want to work with you!</span>
+                    </div>
+                    <div class="divider divider-top"></div>
+                    <div id="info-text" data-simplebar>
+                        <div class="content-text" id='info-text-inner'>
+                            <p class="first-p last-p">
+                                From learning VBA to Python, to learning HTML, CSS and JS so that I could build this website: I'm not
+                                sure how far along I really am and how good I am at this stuff. I know that the only way for me to
+                                know is to work with others, so that I can compare myself with them along with gaining some other benefits.
+                                If you want to work with me, whether its a for a job or some personal project, I'll be very
+                                grateful if you reach out to me about it. If its something informal: discord is preferred, otherwise
+                                email is preferred.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="divider divider-bottom"></div>
+                    <div id="info-contact-container">
+                        <div class="info-contact">
+                            <div class="con-1"><span >Email</span></div>
+                            <div class="con-2"><span>braidenschopp@gmail.com</span></div>
+                        </div>
+                        <div class="info-contact">
+                            <div class="con-1"><span>Discord</span></div>
+                            <div class="con-2"><span>Pinkle Monade#2667</span></div>
+                        </div>
+                        <div class="info-contact">
+                            <div class="con-1"><span>Phone</span></div>
+                            <div class="con-2"><span>3148006314</span></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
+            <div class="footer-rest" id="about-footer-rest"></div>
         </main>
         <footer>
             <nav>
@@ -357,7 +512,6 @@
             </nav>
         </footer>
     </div>
-    <script src="projects.js"></script>
-    <script src="main.js"></script>
+    <script src="main.js" type="module"></script>
 </body>
 </html>
