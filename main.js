@@ -30,6 +30,7 @@ const expandContactText = (element) => {
     } else {
         id = $(element).attr('id')
     }
+
     if (id === 'info-heading') {
         if (iShow === true) {
             $('#info-text').remove();
@@ -40,6 +41,7 @@ const expandContactText = (element) => {
             $('#info .divider-top').css('opacity', '.5')
             $('#info').css('min-height', '0')
             $('about-me').css('max-height', '50%')
+
         } else {
             infoText.insertAfter('#info .divider-top')
             $('<div></div>')
@@ -48,14 +50,14 @@ const expandContactText = (element) => {
             .insertAfter($('#info-text'))
             iShow = true;
             $('#info-text').css('min-height', '10%')
-            $('#info').css('min-height', 'calc(50% - 40px')
+            $('#info').css('min-height', 'calc(50% - 40px)')
             $('#info-heading').css('opacity', '1')
             $('#info .divider-top').css('opacity', '1')
             
             if (aShow) {
-                $('#about-me').css('max-height', '100%')
+                $('#about-me').css('max-height', '50%')
             } else {
-                $('about-me').css('max-height', '50%')
+                $('about-me').css('max-height', '100%')
             }
         }
     } else if (id === 'about-heading') {
@@ -66,7 +68,6 @@ const expandContactText = (element) => {
             $('#about-me').css('min-height', '0')
             $('#about-heading').css('opacity', '.5')
             $('#about-me .divider-top').css('opacity', '.5')
-            $('#about-me').css('max-height', '10px')
         } else {
             $('#about-me')
             .append(aboutText)
@@ -87,6 +88,8 @@ const expandContactText = (element) => {
             
         }
     }
+
+    enableFlowType()
 }
 
 const getDisplayType = () => {
@@ -1055,10 +1058,10 @@ const windowResizeEventHandler = (event) => {
     checkSectionViewPort();
     fillSideProjectsContainer();
     resetColor();
-    enableFlowType();
     sideProjectsHandler();
     expandContactText();
     contactClickEvent();
+    enableFlowType();
 }
 
 const pageLinkEventHandler = (event) => {
