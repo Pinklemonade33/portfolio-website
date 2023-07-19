@@ -1,4 +1,152 @@
 //Functions
+const expandSideProjects = () => {
+    const menu = sideProjects.clone()
+    const pClass = getProjectDisplayClass()
+    if ($(window).outerWidth() <= 700) {
+        $('#main-project-outer').remove()
+        $(menu).css('width', '100%')
+        $(menu).css('max-width', '100%')
+        $(menu).css('min-width', '100%')
+        selectSideProject(pClass)
+        currentDC = pClass
+        mpShow = false
+    } else {
+        $('#main-project-outer').css('margin-right', '30px')
+        currentDC = null
+        mpShow = true
+    }
+    
+    $('#projects').append(menu)
+    enableFlowType();
+    sideProjectsClickEvent();
+    spShow = true
+}
+
+const expandContactText = (element) => {
+ 
+    let id;
+    if ($(element.tagName.toLocaleLowerCase() === 'span')) {
+        id = $(element).parent().attr('id')
+    } else {
+        id = $(element).attr('id')
+    }
+    if (id === 'info-heading') {
+        if (iShow === true) {
+            $('#info-text').remove();
+            $('#info .divider-bottom').remove()
+            iShow = false;
+            $('#info-text').css('min-height', '0')
+            $('#info-heading').css('opacity', '.5')
+            $('#info .divider-top').css('opacity', '.5')
+            $('#info').css('min-height', '0')
+            $('about-me').css('max-height', '50%')
+        } else {
+            infoText.insertAfter('#info .divider-top')
+            $('<div></div>')
+            .addClass('divider-bottom')
+            .addClass('divider')
+            .insertAfter($('#info-text'))
+            iShow = true;
+            $('#info-text').css('min-height', '10%')
+            $('#info').css('min-height', 'calc(50% - 40px')
+            $('#info-heading').css('opacity', '1')
+            $('#info .divider-top').css('opacity', '1')
+            
+            if (aShow) {
+                $('#about-me').css('max-height', '100%')
+            } else {
+                $('about-me').css('max-height', '50%')
+            }
+        }
+    } else if (id === 'about-heading') {
+        if (aShow === true) {
+            $('#about-text').remove();
+            $('#about-me .divider-bottom').remove()
+            aShow = false;
+            $('#about-me').css('min-height', '0')
+            $('#about-heading').css('opacity', '.5')
+            $('#about-me .divider-top').css('opacity', '.5')
+            $('#about-me').css('max-height', '10px')
+        } else {
+            $('#about-me')
+            .append(aboutText)
+            .append($('<div></div>')
+                .addClass('divider-bottom')
+                .addClass('divider')
+            );   
+            aShow = true;
+            $('#about-me').css('min-height', '10%')
+            $('#about-heading').css('opacity', '1')
+            $('#about-me .divider-top').css('opacity', '1')
+            
+            if (iShow) {
+                $('#about-me').css('max-height', '50%')
+            } else {
+                $('#about-me').css('max-height', '100%')
+            }
+            
+        }
+    }
+}
+
+const getDisplayType = () => {
+    return $('.inner-display').attr('class').split(" ")[0]
+}
+
+const collapseSideProjects = () => {
+    $('#side-projects-container').remove()
+    $('#main-project-outer').css('margin-right', '0')
+    spShow = false
+    currentDC = null
+}
+
+const sideProjectsHandler = () => {
+    if ($(window).outerWidth() <= 700) {
+        collapseSideProjects();
+    } 
+}
+
+const selectSideProject = (target) => {
+    if (spShow) {
+        const project = getClone(target, projects);
+        const readme = getClone($(project), readmeDisplays);
+
+        const pClass = getProjectDisplayClass();
+
+        const currentSP = $('.side-project-container').toArray()
+            .find(e => getProjectDisplayClass(e) === pClass);
+
+
+        $(currentSP).css('background-color', '#30292fff');
+        $(currentSP).addClass('hvr-fade');
+
+        // Change color of selected side project
+        $(target).closest('.side-project-container')
+        .css('background-color', '#02111bff')
+        .removeClass('hvr-fade');
+
+        if (!mpShow) {
+            $('#projects').prepend(mainProjectOuter);
+            mainProjectEvents();
+        }
+
+        setMainProject(project);
+        setProjectDisplay(readme);
+
+        if (!mpShow) {
+            collapseSideProjects();
+        }
+
+    }
+}
+
+// Switch between projects on click
+const sideProjectsClickEvent = () => {
+    $('.side-project-container').on('click', function (event) {
+        selectSideProject(event.target)
+    })
+}
+
 const getClone = (element, clone) => {
     const pClass = getProjectDisplayClass(element)
     return clone.toArray().find(e => {
@@ -44,14 +192,16 @@ const displayConsoleCode = (string) => {
 }
 
 const displayExpressionResult = (data) => {
-    if ('value' in data['val']) {
-        const newLine = ($('<span></span>').text(data['val']['value']))
-        $('.console .code-box').append(newLine)
-    } else if ('df' in data['val']) {
-        $('.df-display').children().first().remove();
-        $('.df-display').append(data['val']['df'])
-        refreshSimpleBar($('.df-display')[0])
-    }
+    if (typeof data['val'] != 'boolean') {
+        if ('value' in data['val']) {
+            const newLine = ($('<span></span>').text(data['val']['value']))
+            $('.console .code-box').append(newLine)
+        } else if ('df' in data['val']) {
+            $('.df-display').children().first().remove();
+            $('.df-display').append(data['val']['df'])
+            refreshSimpleBar($('.df-display')[0])
+        }
+    } 
 }
 
 const updateTree = (data) => {
@@ -75,10 +225,14 @@ const displayAttributes = (data) => {
 }
 
 const getProjectDisplayClass = (element=null) => {
-    if (element != null) {
+   if (element != null) {
         return $(element).attr('class').split(" ")[1]
     } else {
-        return $('.project-display').attr('class').split(" ")[1]
+        if (currentDC === null) {
+            return $('.project-display').attr('class').split(" ")[1]
+        } else {
+            return currentDC
+        }
     }
 }
 
@@ -260,7 +414,7 @@ const callPythonApp = (string) => {
                 }
                 updateTree(data)
             }
-        } catch (error) {} 
+        } catch (error) {console.log(error)} 
 });
 }
 
@@ -318,6 +472,7 @@ const clickButton = (event) => {
     const showElements = getSkillText(showClass)
     // adds skills description
     showElements.forEach(element => {
+        console.log(element)
         if (element.tagName.toLocaleLowerCase() === 'div') {
             expContainer.appendChild(element)
         } else {
@@ -436,6 +591,63 @@ const FitElement = (element) => {
     }
 }
 
+const displayAsColumn = () => {
+    const newRow = $('.right-side').clone();
+
+    newRow
+    .css('width', '100%')
+    .css('height', '40%');
+
+    $('.right-side').remove();
+    $('.vertical-divider').remove();
+
+    if (getProjectDisplayClass() === 'myventory-p0') {
+        $('.console')
+        .append($('<div></div>').addClass('horizontal-divider hor-1'))
+        .append(newRow)
+        .css('width', '100%');
+    } else if (getProjectDisplayClass() === 'no-more-reports-p1') {
+        const dfClone = $('.df-display').clone()
+
+        $('.df-display').remove()
+
+        $('.console')
+        .prepend(newRow)
+        .append($('<div></div>').addClass('horizontal-divider hor-1'))
+        .append(dfClone)
+        .css('width', '100%');
+    }
+    
+  
+    $('.console-inner').css('max-height', '15%')
+
+    displaySingleColumn[getProjectDisplayClass()] = true;
+
+    if (getProjectDisplayClass() === 'myventory-p0') {
+        reloadTree();
+    }
+    
+}
+
+const displayAsNormal = () => {
+    const newRow = $('.right-side').clone();
+    newRow
+    .css('width', '30%');
+
+    $('.right-side').remove();
+    $('.hor-1').remove()
+
+    $('.console-display')
+    .append($('<div></div>').addClass('vertical-divider'))
+    .append(newRow)
+    
+    $('.console').css('width', '70%')
+    $('.console-inner').css('max-height', '32%')
+
+    displaySingleColumn[getProjectDisplayClass()] = false;
+    reloadTree();
+}
+
 // Adjust elements on screen size change
 const setHeight = () => {
     $(softSkillsInner).height($(softSkillsContainer).height());
@@ -453,6 +665,13 @@ const setHeight = () => {
     }
     if ($('about-heading').height() <= 30) {
 
+    }
+    if (
+        $(window).width() 
+        + $(window).height() 
+        <= 2280
+    ) {
+        $('#skills-description').css('width', '100%')
     }
 
 }
@@ -740,19 +959,21 @@ const altFlowType = (flowType) => {
     }
 }
 
+// Set dynamic font sizes for different screen sizes
 const enableFlowType = () => {
     let flowTypes;
-
     if (
-        $(window).width() <= 950 &&
-        $(window).height() >= 900
+        $(window).width() 
+        + $(window).height() 
+        <= 1400
     ) {
+        // Phone
         flowTypes = {
             'header': [altFlowType('header')],
             '.heading':[[22, 48, 1, 1, 9999]],
             '#side-projects-container': [[22, 48, 5, 1, 9999]],
-            '#info-heading': [[20, 40, 10, 1, 9999]],
-            '#info-text': [[18, 32, 10, 1, 9999]],
+            '#info-heading': [[20, 40, 15, 1, 9999]],
+            '#info-text': [[18, 32, 15, 1, 9999]],
             '.info-contact': [[12, 48, 20, 249, 9999]],
             '.soft-skills-text': ['#info-heading', [[.5, 12, 4]]],
             '.skills-heading': ['#info-heading'],
@@ -764,14 +985,39 @@ const enableFlowType = () => {
             '#skill-switch': ['#info-heading'],
             '.additional-skills-text': ['.soft-skills-text'],
             '.side-project-container': [[14, 28, 1, 1, 9999]]
-        }
+        } 
+    } else if (
+        $(window).width()
+        + $(window).height()
+        <= 2000
+    ) {
+        // Tablet
+        flowTypes = {
+            'header': [altFlowType('header')],
+            '.heading':[[22, 48, 1, 1, 9999]],
+            '#side-projects-container': [[22, 48, 5, 1, 9999]],
+            '#info-heading': [[20, 40, 12, 1, 9999]],
+            '#info-text': [[18, 32, 12, 1, 9999]],
+            '.info-contact': [[12, 48, 20, 249, 9999]],
+            '.soft-skills-text': ['#info-heading', [[.5, 12, 4]]],
+            '.skills-heading': ['#info-heading'],
+            '.intro-heading': ['#info-heading'],
+            '.intro-text': ['#info-text'],
+            '#about-text': ['#info-text'],
+            '#about-heading': ['#info-heading'],
+            '#experience-container': ['#info-text'],
+            '#skill-switch': ['#info-heading'],
+            '.additional-skills-text': ['.soft-skills-text'],
+            '.side-project-container': [[14, 28, 1, 1, 9999]]
+        } 
     } else {
+        // PC
         flowTypes = {
             'header': [altFlowType('header')],
             '.heading': [[22, 48, 1, 1, 9999]],
             '#side-projects-container': [[22, 48, 5, 1, 9999]],
-            '#info-heading': [[20, 42, 15, 1, 9999]],
-            '#info-text': [[18, 32, 25, 1, 9999]],
+            '#info-heading': [[20, 42, 10, 1, 9999]],
+            '#info-text': [[18, 32, 10, 1, 9999]],
             '.info-contact': [[12, 48, 20, 249, 9999]],
             '.soft-skills-text': ['#info-heading', [[.5, 12, 4]]],
             '.skills-heading': ['#info-heading'],
@@ -791,14 +1037,28 @@ const enableFlowType = () => {
     }
 }
 
+const contactClickEvent = () => {
+    if ($(window).outerWidth() <= 1000) {
+        $('.contact-heading').on('click', function(event) {
+            expandContactText(event.target)
+        })
+    } else {
+        $('.contact-heading').off('click', function(event) {
+            expandContactText(event.target)
+        })
+    }
+}
+
 const windowResizeEventHandler = (event) => {
     resizeTimeStamp = event.timeStamp
     setHeight();
     checkSectionViewPort();
-    changeProjectsLayout();
     fillSideProjectsContainer();
     resetColor();
     enableFlowType();
+    sideProjectsHandler();
+    expandContactText();
+    contactClickEvent();
 }
 
 const pageLinkEventHandler = (event) => {
@@ -910,13 +1170,9 @@ const isTouchDevice = () => {
     }
 }
 
-const expandTextContainer = (container) => {
-    const parent = $(container).parent()
-    const siblings = $(parent).children()
-}
-
 const loadMarkdown = (path) => {
     const converter = new showdown.Converter();
+    converter.setFlavor('github');
 
     fetch(path)
         .then(response => response.text())
@@ -1039,6 +1295,17 @@ let activeButton = null;
 let previousSkill = null;
 let previousSection = null;
 let resizeTimeStamp = null;
+let spShow = true;
+let mpShow = true;
+let currentDC = null;
+let aShow = true;
+let iShow = true
+
+let displaySingleColumn = {
+    'myventory-p0': false,
+    'no-more-reports-p1': false,
+    'worksheet-builder-p2': false
+};
 
 // Object containing the button element for every skill class
 // skill class example: skills-js
@@ -1074,6 +1341,10 @@ const linkRelatives = {
 const projects = $('.project-display').clone()
 const consoleDisplays = $('.console-display').clone()
 const readmeDisplays = $('.readme-display').clone()
+const sideProjects = $('#side-projects-container').clone()
+const mainProjectOuter = $('#main-project-outer').clone()
+const aboutText = $('#about-text').clone()
+const infoText = $('#info-text').clone()
 const trees = {}
 
 hardSwitch.addEventListener('click', switchSkills);
@@ -1084,44 +1355,43 @@ hardSwitch.addEventListener('mouseover', changeOpacityHigh);
 window.addEventListener('resize', windowResizeEventHandler);
 skillsLink.addEventListener('click', setHeight);
 
-$(function() {
-    // Switch between projects on click
-    $('.side-project-container').on('click', function (event) {
-        const project = getClone(event.target, projects)
-        const readme = getClone($(project), readmeDisplays)
-        
-        // Change color of current side project 
-        const pClass = getProjectDisplayClass($('.project-display'))
-        const currentSP = $('.side-project-container').toArray()
-        .find(e => getProjectDisplayClass(e) === pClass)
-        $(currentSP).css('background-color', '#30292fff')
-        $(currentSP).addClass('hvr-fade')
+const mainProjectEvents = () => {
+    $(function() {
+        sideProjectsClickEvent();
+    
+        // Switch display on click
+        $('#main-project-readme-button').on('click', function (event) {
+            const readme = getClone($('.project-display'), readmeDisplays)
+            setProjectDisplay(readme)
+        })
+        $('#main-project-demo-button').on('click', function (event) {
+            const demo = getClone($('.project-display'), consoleDisplays);
+            setProjectDisplay(demo);
 
-        // Change color of selected side project
-        $(event.target).closest('.side-project-container')
-        .css('background-color', '#02111bff')
-        .removeClass('hvr-fade')
-
-        setMainProject(project)
-        setProjectDisplay(readme)
+            if (getDisplayType() === 'console-display') {
+                if ($(window).outerWidth() <= 700 && !displaySingleColumn[getProjectDisplayClass()]) {
+                    displayAsColumn()
+                } else if ($(window).outerWidth() > 700 && displaySingleColumn[getProjectDisplayClass()]) {
+                    displayAsNormal()
+                }
+            }
+                
+            const pClass = getProjectDisplayClass()
+            if (pClass === 'no-more-reports-p1') {
+                const simpleBarElements = $('.ref-0')[0]
+                const simpleBar = new SimpleBar(simpleBarElements)
+                simpleBar.recalculate()
+            }
+        })
+        $('#main-project-menu-button').on('click', function (event) {
+            if (spShow) {
+                collapseSideProjects();
+            } else {
+                expandSideProjects();
+            }
+        })
     })
-    // Switch display on click
-    $('#main-project-readme-button').on('click', function (event) {
-        const readme = getClone($('.project-display'), readmeDisplays)
-        setProjectDisplay(readme)
-    })
-    $('#main-project-demo-button').on('click', function (event) {
-        const demo = getClone($('.project-display'), consoleDisplays);
-        setProjectDisplay(demo);
-        const pClass = getProjectDisplayClass()
-        if (pClass === 'no-more-reports-p1') {
-            const simpleBarElements = $('.ref-0')[0]
-            const simpleBar = new SimpleBar(simpleBarElements)
-            simpleBar.recalculate()
-        }
-    })
-})
-
+}
 
 pageLinks.forEach(element => {element.addEventListener('click', pageLinkEventHandler)})
 
@@ -1137,14 +1407,17 @@ $('html, body').css('opacity', 1)
 skillText.forEach(element => element.remove());
 softSwitch.style.opacity = '0.1';
 setHeight();
-changeProjectsLayout();
 enableFlowType();
 setColor($('#intro-link'));
 expandColor($('#intro-link'), 0);
 keepEvenWidth($('.con-2'));
 fillSideProjectsContainer();
 callPythonApp('reset');
-$('.projects-display').remove();
+$('.project-display').remove();
 $('.inner-display').remove();
 setMainProject(projects[0]);
 setProjectDisplay(readmeDisplays[0]);
+sideProjectsHandler();
+selectSideProject($('#sp-myventory'));
+mainProjectEvents();
+contactClickEvent();
