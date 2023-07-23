@@ -676,7 +676,6 @@ const setHeight = () => {
     ) {
         $('#skills-description').css('width', '100%')
     }
-
 }
 
 const addText = (paragraph) => {
@@ -1080,17 +1079,7 @@ const pageLinkEventHandler = (event) => {
     }
 }
 
-const keepEvenWidth = (elements) => {
-    const largestElement = elements.toArray().reduce((acc, e) => {
-        if ($(e).width() > $(acc).width()) {
-            return e
-        } else {
-            return acc
-        }
-    })
-    const largestWidth = $(largestElement).width()
-    elements.toArray().forEach(e => $(e).width(150))
-}
+
 
 const keepEvenHeight = (elements) => {
     const smallestElement = elements.toArray().reduce((acc, e) => {
@@ -1413,7 +1402,6 @@ setHeight();
 enableFlowType();
 setColor($('#intro-link'));
 expandColor($('#intro-link'), 0);
-keepEvenWidth($('.con-2'));
 fillSideProjectsContainer();
 callPythonApp('reset');
 $('.project-display').remove();
@@ -1424,3 +1412,23 @@ sideProjectsHandler();
 selectSideProject($('#sp-myventory'));
 mainProjectEvents();
 contactClickEvent();
+
+
+// Depreciations
+
+// keepEvenWidth($('.con-2'));
+
+/*
+const keepEvenWidth = (elements) => {
+    const largestElement = elements.toArray().reduce((acc, e) => {
+        if ($(e).width() > $(acc).width()) {
+            return e
+        } else {
+            return acc
+        }
+    })
+    const largestWidth = $(largestElement).width()
+    console.log(largestWidth)
+    elements.toArray().forEach(e => $(e).width(largestWidth))
+}
+*/
